@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Comment</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <h1>Edit Comment</h1>
+    <form th:action="@{/comments/update}"
+        method="post">
+
+        <input type="hidden"
+               name="id"
+               th:field="*{comment.id}"/>
+
+        <label>Name</label>
+        <br>
+        <input type="text"
+               name="name"
+               th:field="*{comment.name}"/>
+        <br>
+        <br>
+
+        <label>Email</label>
+        <br>
+        <input type="email"
+               name="email"
+            th:field="*{comment.email}"/>
+        <br>
+        <br>
+
+        <label>Comment</label>
+        <br>
+        <textarea name="comment" th:field="*{comment.comment}"></textarea>
+        <br>
+        <br>
+
+        <button type="submit">
+            Update Comment
+        </button>
+    </form>
+</body>
+</html>

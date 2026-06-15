@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>General error</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <h1>Something went wrong</h1>
+    <p th:text="${errorMessage}"></p>
+    <a href="/posts">Go Back</a>
+</body>
+</html>

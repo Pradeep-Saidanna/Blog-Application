@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Error page 404</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <h1>Page Not Found</h1>
+    <p th:text="${errorMessage}"></p>
+    <a href="/posts">Go Back</a>
+</body>
+</html>

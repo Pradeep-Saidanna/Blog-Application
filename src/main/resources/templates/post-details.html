@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Post Details</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <div class="container post-card">
+        <h1 th:text="${post.title}"></h1>
+        <p>
+            <b>Author : </b>
+            <span th:text="${post.author}"></span>
+        </p>
+        <p>
+            <b>Tags : </b>
+            <span th:each="tag : ${post.tags}">
+            <a th:href="@{/posts(tagId=${tag.id})}"
+               th:text="${tag.name}">
+            </a>
+        </span>
+        </p>
+        <p>
+            <b>Excerpt : </b>
+            <span th:text="${post.excerpt}"></span>
+        </p>
+        <p>
+            <b>Published : </b>
+            <span th:text="${post.published}"></span>
+        </p>
+        <p>
+            <b>Published At: </b>
+            <span th:text="${post.publishedAt}"></span>
+        </p>
+        <p>
+            <b>Created At : </b>
+            <span th:text="${post.createdAt}"></span>
+        </p>
+        <p>
+            <b>Updated At : </b>
+            <span th:text="${post.updatedAt}"></span>
+        </p>
+        <p th:text="${post.content}"></p>
+        <br>
+        <br>
+        <h2>Comments</h2>
+        <div th:if="${comments.isEmpty()}">
+            No comments yet.
+        </div>
+        <div th:each="comment : ${comments}">
+            <p>
+                <b th:text="${comment.name}"></b>
+                (<span th:text="${comment.email}"></span>)
+            </p>
+            <p th:text="${comment.comment}"></p>
+            <a th:href="@{/comments/edit/{id}(id=${comment.id})}">
+                Edit
+            </a>
+            &nbsp;
+            <a th:href="@{/comments/delete/{id}(id=${comment.id})}">
+                Delete
+            </a>
+            <hr>
+        </div>
+        <h3>Add Comment</h3>
+        <form th:action="@{/comments/save}" method="post">
+            <input type="hidden"
+                   name="postId"
+                   th:value="${post.id}">
+            <label>Name</label>
+            <br>
+            <input type="text" name="name">
+            <br><br>
+            <label>Email</label>
+            <br>
+            <input type="email" name="email">
+            <br><br>
+            <label>Comment</label>
+            <br>
+            <textarea name="comment"></textarea>
+            <br>
+            <br>
+            <button type="submit">
+                Add Comment
+            </button>
+        </form>
+    </div>
+</body>
+</html>

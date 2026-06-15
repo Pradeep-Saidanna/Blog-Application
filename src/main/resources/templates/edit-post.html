@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Post</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <h1>Edit Post</h1>
+    <form th:action="@{/posts/update}" th:object="${post}" method="post">
+        <input type="hidden" th:field="*{id}"/>
+        <label>Title</label>
+        <br>
+        <input type="text" th:field="*{title}"/>
+        <br><br>
+        <label>Author</label>
+        <br>
+        <input type="text" th:field="*{author}" />
+        <br><br>
+        <label>Content</label>
+        <br>
+        <textarea th:field="*{content}"></textarea>
+        <br>
+        <br>
+        <label>Excerpt</label>
+        <br>
+        <input type="text" th:field="*{excerpt}">
+        <br>
+        <br>
+        <label>Tags (comma seperated)</label>
+        <br>
+        <input type="text"
+               name="tagInput"
+               th:value="${post.tags != null ? #strings.listJoin(post.tags.![name], ',') : ''}">
+        <br>
+        <br>
+        <label>Published</label>
+        <br>
+        <input type="checkbox" th:field="*{published}">
+        <br>
+        <br>
+        <button type="submit">
+            Update Post
+        </button>
+    </form>
+</body>
+</html>
