@@ -9,38 +9,40 @@
 
 <h1>Edit Post</h1>
 
-<div class="page-center">
-    <div class="card">
+<div class="editor-form">
 
-        <form th:action="@{/posts/update}" th:object="${post}" method="post">
+    <form th:action="@{/posts/update}" th:object="${post}" method="post">
 
-            <input type="hidden" th:field="*{id}"/>
+        <input type="hidden" th:field="*{id}"/>
 
-            <label>Title</label>
-            <input type="text" th:field="*{title}"/>
+        <label>Title</label>
+        <input type="text" th:field="*{title}"/>
 
-            <label>Author</label>
-            <input type="text" th:field="*{author}"/>
+        <label>Author</label>
+        <input type="text" th:field="*{author}"/>
 
-            <label>Content</label>
-            <textarea th:field="*{content}"></textarea>
+        <label>Content</label>
+        <textarea th:field="*{content}"></textarea>
 
-            <label>Excerpt</label>
-            <input type="text" th:field="*{excerpt}"/>
+        <label>Excerpt</label>
+        <input type="text" th:field="*{excerpt}"/>
 
-            <label>Tags (comma separated)</label>
-            <input type="text"
-                   name="tagInput"
-                   th:value="${post.tags != null ? #strings.listJoin(post.tags.![name], ',') : ''}"/>
+        <label>Tags (comma separated)</label>
+        <input type="text"
+               name="tagInput"
+               th:value="${post.tags != null ? #strings.listJoin(post.tags.![name], ',') : ''}"/>
 
-            <label>Published</label>
-            <input type="checkbox" th:field="*{published}"/>
+        <label>
+            <input type="checkbox"
+                   th:field="*{published}"
+                   style="width:auto; margin-right:8px;">
+            Published
+        </label>
 
-            <button type="submit">Update Post</button>
+        <button type="submit">Update Post</button>
 
-        </form>
+    </form>
 
-    </div>
 </div>
 
 </body>

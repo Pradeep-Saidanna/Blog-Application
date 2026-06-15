@@ -9,77 +9,104 @@
 
 <h1 th:text="${post.title}"></h1>
 
-<div class="page-center">
+<div class="post-details">
 
-    <div class="card" style="max-width: 900px; text-align: left;">
+    <p>
+        <strong>Author:</strong>
+        <span th:text="${post.author}"></span>
+    </p>
 
-        <p><b>Author:</b> <span th:text="${post.author}"></span></p>
+    <p>
+        <strong>Tags:</strong>
+        <span th:each="tag : ${post.tags}">
+                <a th:href="@{/posts(tagId=${tag.id})}"
+                   th:text="${tag.name}"></a>
+                &nbsp;
+            </span>
+    </p>
+
+    <p>
+        <strong>Excerpt:</strong>
+        <span th:text="${post.excerpt}"></span>
+    </p>
+
+    <p>
+        <strong>Published:</strong>
+        <span th:text="${post.published}"></span>
+    </p>
+
+    <p>
+        <strong>Published At:</strong>
+        <span th:text="${post.publishedAt}"></span>
+    </p>
+
+    <p>
+        <strong>Created At:</strong>
+        <span th:text="${post.createdAt}"></span>
+    </p>
+
+    <p>
+        <strong>Updated At:</strong>
+        <span th:text="${post.updatedAt}"></span>
+    </p>
+
+    <hr>
+
+    <div class="post-content">
+        <p th:text="${post.content}"></p>
+    </div>
+
+    <hr>
+
+    <h2>Comments</h2>
+
+    <div th:if="${comments.isEmpty()}">
+        <p>No comments yet.</p>
+    </div>
+
+    <div th:each="comment : ${comments}">
 
         <p>
-            <b>Tags:</b>
-            <span th:each="tag : ${post.tags}">
-                    <a th:href="@{/posts(tagId=${tag.id})}" th:text="${tag.name}"></a>
-                    &nbsp;
-                </span>
+            <strong th:text="${comment.name}"></strong>
+            (<span th:text="${comment.email}"></span>)
         </p>
 
-        <p><b>Excerpt:</b> <span th:text="${post.excerpt}"></span></p>
+        <p th:text="${comment.comment}"></p>
 
-        <p><b>Published:</b> <span th:text="${post.published}"></span></p>
+        <a th:href="@{/comments/edit/{id}(id=${comment.id})}">
+            Edit
+        </a>
 
-        <p><b>Published At:</b> <span th:text="${post.publishedAt}"></span></p>
+        &nbsp;
 
-        <p><b>Created At:</b> <span th:text="${post.createdAt}"></span></p>
-
-        <p><b>Updated At:</b> <span th:text="${post.updatedAt}"></span></p>
-
-        <hr>
-
-        <p th:text="${post.content}"></p>
+        <a th:href="@{/comments/delete/{id}(id=${comment.id})}">
+            Delete
+        </a>
 
         <hr>
-
-        <h2>Comments</h2>
-
-        <div th:if="${comments.isEmpty()}">
-            No comments yet.
-        </div>
-
-        <div th:each="comment : ${comments}">
-            <p>
-                <b th:text="${comment.name}"></b>
-                (<span th:text="${comment.email}"></span>)
-            </p>
-
-            <p th:text="${comment.comment}"></p>
-
-            <a th:href="@{/comments/edit/{id}(id=${comment.id})}">Edit</a>
-            &nbsp;
-            <a th:href="@{/comments/delete/{id}(id=${comment.id})}">Delete</a>
-
-            <hr>
-        </div>
-
-        <h3>Add Comment</h3>
-
-        <form th:action="@{/comments/save}" method="post">
-
-            <input type="hidden" name="postId" th:value="${post.id}">
-
-            <label>Name</label>
-            <input type="text" name="name">
-
-            <label>Email</label>
-            <input type="email" name="email">
-
-            <label>Comment</label>
-            <textarea name="comment"></textarea>
-
-            <button type="submit">Add Comment</button>
-
-        </form>
 
     </div>
+
+    <h3>Add Comment</h3>
+
+    <form th:action="@{/comments/save}" method="post">
+
+        <input type="hidden"
+               name="postId"
+               th:value="${post.id}">
+
+        <label>Name</label>
+        <input type="text" name="name">
+
+        <label>Email</label>
+        <input type="email" name="email">
+
+        <label>Comment</label>
+        <textarea name="comment"></textarea>
+
+        <button type="submit">Add Comment</button>
+
+    </form>
 
 </div>
 

@@ -9,38 +9,38 @@
 
 <h1>Create New Post</h1>
 
-<div class="page-center">
-    <div class="card">
+<div class="editor-form">
 
-        <form th:action="@{/posts/save}" th:object="${post}" method="post">
+    <form th:action="@{/posts/save}" th:object="${post}" method="post">
 
-            <label>Title</label>
-            <input type="text" th:field="*{title}">
-            <div th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="error"></div>
+        <label>Title</label>
+        <input type="text" th:field="*{title}">
+        <div th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="error"></div>
 
-            <label>Author</label>
-            <input type="text" th:field="*{author}">
-            <div th:if="${#fields.hasErrors('author')}" th:errors="*{author}" class="error"></div>
+        <label>Author</label>
+        <input type="text" th:field="*{author}">
+        <div th:if="${#fields.hasErrors('author')}" th:errors="*{author}" class="error"></div>
 
-            <label>Content</label>
-            <textarea th:field="*{content}"></textarea>
-            <div th:if="${#fields.hasErrors('content')}" th:errors="*{content}" class="error"></div>
+        <label>Content</label>
+        <textarea th:field="*{content}"></textarea>
+        <div th:if="${#fields.hasErrors('content')}" th:errors="*{content}" class="error"></div>
 
-            <label>Excerpt</label>
-            <input type="text" th:field="*{excerpt}">
-            <div th:if="${#fields.hasErrors('excerpt')}" th:errors="*{excerpt}" class="error"></div>
+        <label>Excerpt</label>
+        <input type="text" th:field="*{excerpt}">
+        <div th:if="${#fields.hasErrors('excerpt')}" th:errors="*{excerpt}" class="error"></div>
 
-            <label>Tags (comma separated)</label>
-            <input type="text" name="tagInput" placeholder="java, spring, hibernate">
+        <label>Tags (comma separated)</label>
+        <input type="text" name="tagInput" placeholder="java, spring, hibernate">
 
-            <label>Published</label>
-            <input type="checkbox" th:field="*{published}">
+        <label>
+            <input type="checkbox" th:field="*{published}" style="width:auto; margin-right:8px;">
+            Published
+        </label>
 
-            <button type="submit">Save Post</button>
+        <button type="submit">Save Post</button>
 
-        </form>
+    </form>
 
-    </div>
 </div>
 
 </body>

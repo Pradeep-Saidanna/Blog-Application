@@ -8,8 +8,6 @@
 
 <body>
 
-<h1>Blog Register</h1>
-
 <div class="auth-container">
 
     <div class="auth-card">
@@ -18,23 +16,38 @@
 
         <form th:action="@{/register}" method="post">
 
-            <input type="text" name="name" placeholder="Name" required>
+            <input type="text"
+                   name="name"
+                   placeholder="Name"
+                   required>
 
-            <input type="email" name="email" placeholder="Email" required>
+            <input type="email"
+                   name="email"
+                   placeholder="Email"
+                   required>
 
-            <input type="password" name="password" placeholder="Password" required>
+            <input type="password"
+                   name="password"
+                   placeholder="Password"
+                   required>
 
-            <button type="submit">Register</button>
+            <button type="submit">
+                Register
+            </button>
 
         </form>
 
         <p>
             Already have an account?
-            <a th:href="@{/login}">Login</a>
+            <a th:href="@{/login}">
+                Login
+            </a>
         </p>
 
-        <p style="text-align:center; margin-top:15px;">
-            <a th:href="@{/posts}">View Posts (No Login Required)</a>
+        <p style="margin-top:15px;">
+            <a th:href="@{/posts}">
+                View Posts (No Login Required)
+            </a>
         </p>
 
     </div>

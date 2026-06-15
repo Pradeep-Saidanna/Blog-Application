@@ -13,169 +13,219 @@
 
 <h1>Blog Posts</h1>
 
-<div class="page-center">
+<div class="container">
 
-    <div class="container">
+    <div sec:authorize="!isAuthenticated()" class="auth-links">
 
-        <div sec:authorize="!isAuthenticated()" class="auth-links">
+        <p>
+            Welcome to our Blog Application.
+            Read posts freely or login to create and manage your own posts.
+        </p>
 
-            <p>
-                Welcome to our Blog Application.
-                Read posts freely or login to create and manage your own posts.
-            </p>
+        <a th:href="@{/login}">Login</a>
+        &nbsp; | &nbsp;
+        <a th:href="@{/register}">Register</a>
 
-            <a th:href="@{/login}">Login</a>
-            &nbsp; | &nbsp;
-            <a th:href="@{/register}">Register</a>
+    </div>
 
-        </div>
+    <div sec:authorize="isAuthenticated()">
 
-        <div sec:authorize="isAuthenticated()">
+        <p>
+            Logged in as:
+            <strong>
+                <span sec:authentication="name"></span>
+            </strong>
+        </p>
 
-            <p>
-                Logged in as:
-                <strong>
-                    <span sec:authentication="name"></span>
-                </strong>
-            </p>
-
-            <form th:action="@{/logout}" method="post">
-                <button type="submit">Logout</button>
-            </form>
-
-        </div>
-
-        <hr>
-
-        <div sec:authorize="hasAnyAuthority('ROLE_AUTHOR','ROLE_ADMIN')">
-            <a th:href="@{/posts/new}">Create New Post</a>
-        </div>
-
-        <br>
-
-        <form method="get" th:action="@{/posts}">
-
-            <input type="text" name="search" placeholder="Search posts..." th:value="${search}">
-            <input type="text" name="author" placeholder="Author" th:value="${author}">
-            <input type="number" name="tagId" placeholder="Tag ID" th:value="${tagId}">
-
-            <select name="sortField">
-                <option value="publishedAt" th:selected="${sortField == 'publishedAt'}">
-                    Published Date
-                </option>
-                <option value="title" th:selected="${sortField == 'title'}">
-                    Title
-                </option>
-                <option value="author" th:selected="${sortField == 'author'}">
-                    Author
-                </option>
-            </select>
-
-            <select name="order">
-                <option value="desc" th:selected="${order == 'desc'}">DESC</option>
-                <option value="asc" th:selected="${order == 'asc'}">ASC</option>
-            </select>
-
-            <button type="submit">Apply</button>
-
+        <form th:action="@{/logout}" method="post">
+            <button type="submit">Logout</button>
         </form>
 
-        <hr>
+    </div>
 
-        <div th:if="${#lists.isEmpty(posts)}">
-            <h3>No Posts Found</h3>
-        </div>
+    <hr>
 
-        <div class="posts-wrapper">
+    <div sec:authorize="hasAnyAuthority('ROLE_AUTHOR','ROLE_ADMIN')">
 
-            <div class="posts-column">
+        <a th:href="@{/posts/new}">
+            Create New Post
+        </a>
 
-                <div th:each="post : ${posts}" class="post-card">
+    </div>
 
-                    <h2 th:text="${post.title}"></h2>
+    <br>
 
-                    <p>
-                        <b>Author:</b>
-                        <span th:text="${post.author}"></span>
-                    </p>
+    <form method="get" th:action="@{/posts}">
 
-                    <p>
-                        <b>Published:</b>
-                        <span th:text="${#temporals.format(post.publishedAt,'dd-MM-yyyy HH:mm')}"></span>
-                    </p>
+        <input type="text"
+               name="search"
+               placeholder="Search posts..."
+               th:value="${search}">
 
-                    <p th:text="${post.excerpt}"></p>
+        <input type="text"
+               name="author"
+               placeholder="Author"
+               th:value="${author}">
 
-                    <p>
-                        <b>Tags:</b>
-                        <span th:each="tag : ${post.tags}">
-                                <a th:href="@{/posts(tagId=${tag.id})}" th:text="${tag.name}"></a>
-                                &nbsp;
-                            </span>
-                    </p>
+        <input type="number"
+               name="tagId"
+               placeholder="Tag ID"
+               th:value="${tagId}">
 
-                    <a th:href="@{/posts/{id}(id=${post.id})}">View</a>
+        <select name="sortField">
 
-                    <span sec:authorize="hasAnyAuthority('ROLE_AUTHOR','ROLE_ADMIN')">
-                            &nbsp;&nbsp;
-                            <a th:href="@{/posts/edit/{id}(id=${post.id})}">Edit</a>
-                            &nbsp;&nbsp;
-                            <a th:href="@{/posts/delete/{id}(id=${post.id})}"
-                               onclick="return confirm('Are you sure you want to delete this post?')">
-                                Delete
-                            </a>
-                        </span>
+            <option value="publishedAt"
+                    th:selected="${sortField == 'publishedAt'}">
+                Published Date
+            </option>
 
-                </div>
+            <option value="title"
+                    th:selected="${sortField == 'title'}">
+                Title
+            </option>
+
+            <option value="author"
+                    th:selected="${sortField == 'author'}">
+                Author
+            </option>
+
+        </select>
+
+        <select name="order">
+
+            <option value="desc"
+                    th:selected="${order == 'desc'}">
+                DESC
+            </option>
+
+            <option value="asc"
+                    th:selected="${order == 'asc'}">
+                ASC
+            </option>
+
+        </select>
+
+        <button type="submit">
+            Apply Filters
+        </button>
+
+    </form>
+
+    <hr>
+
+    <div th:if="${#lists.isEmpty(posts)}">
+
+        <h3>No Posts Found</h3>
+
+    </div>
+
+    <div class="posts-wrapper">
+
+        <div class="posts-grid">
+
+            <div th:each="post : ${posts}" class="post-card">
+
+                <h2 th:text="${post.title}"></h2>
+
+                <p>
+                    <strong>Author:</strong>
+                    <span th:text="${post.author}"></span>
+                </p>
+
+                <p>
+                    <strong>Published:</strong>
+                    <span th:text="${#temporals.format(post.publishedAt,'dd-MM-yyyy HH:mm')}"></span>
+                </p>
+
+                <p th:text="${post.excerpt}"></p>
+
+                <p>
+
+                    <strong>Tags:</strong>
+
+                    <span th:each="tag : ${post.tags}">
+
+                        <a th:href="@{/posts(tagId=${tag.id})}"
+                           th:text="${tag.name}">
+                        </a>
+
+                        &nbsp;
+
+                    </span>
+
+                </p>
+
+                <a th:href="@{/posts/{id}(id=${post.id})}">
+                    View
+                </a>
+
+                <span sec:authorize="hasAnyAuthority('ROLE_AUTHOR','ROLE_ADMIN')">
+
+                    &nbsp;&nbsp;
+
+                    <a th:href="@{/posts/edit/{id}(id=${post.id})}">
+                        Edit
+                    </a>
+
+                    &nbsp;&nbsp;
+
+                    <a th:href="@{/posts/delete/{id}(id=${post.id})}"
+                       onclick="return confirm('Are you sure you want to delete this post?')">
+                        Delete
+                    </a>
+
+                </span>
 
             </div>
 
         </div>
 
-        <br>
+    </div>
 
-        <div class="pagination">
+    <div class="pagination">
 
-            <th:block th:if="${currentPage > 0}">
-                <a th:href="@{/posts(
-                        page=${currentPage - 1},
-                        size=5,
-                        search=${search},
-                        author=${author},
-                        tagId=${tagId},
-                        sortField=${sortField},
-                        order=${order}
-                    )}">
-                    Previous
-                </a>
-            </th:block>
+        <th:block th:if="${currentPage > 0}">
 
-            &nbsp;
+            <a th:href="@{/posts(
+                page=${currentPage - 1},
+                size=5,
+                search=${search},
+                author=${author},
+                tagId=${tagId},
+                sortField=${sortField},
+                order=${order}
+            )}">
+                Previous
+            </a>
 
-            <strong>
-                Page
-                <span th:text="${currentPage + 1}"></span>
-                /
-                <span th:text="${totalPages}"></span>
-            </strong>
+        </th:block>
 
-            &nbsp;
+        &nbsp;
 
-            <th:block th:if="${currentPage + 1 < totalPages}">
-                <a th:href="@{/posts(
-                        page=${currentPage + 1},
-                        size=5,
-                        search=${search},
-                        author=${author},
-                        tagId=${tagId},
-                        sortField=${sortField},
-                        order=${order}
-                    )}">
-                    Next
-                </a>
-            </th:block>
+        <strong>
+            Page
+            <span th:text="${currentPage + 1}"></span>
+            /
+            <span th:text="${totalPages}"></span>
+        </strong>
 
-        </div>
+        &nbsp;
+
+        <th:block th:if="${currentPage + 1 < totalPages}">
+
+            <a th:href="@{/posts(
+                page=${currentPage + 1},
+                size=5,
+                search=${search},
+                author=${author},
+                tagId=${tagId},
+                sortField=${sortField},
+                order=${order}
+            )}">
+                Next
+            </a>
+
+        </th:block>
 
     </div>
 
