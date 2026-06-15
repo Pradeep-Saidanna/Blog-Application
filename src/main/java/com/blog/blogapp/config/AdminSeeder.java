@@ -6,30 +6,32 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Component;
 
-@Component
-public class AdminSeeder implements CommandLineRunner {
+@Configuration
+public class AdminSeeder {
 
-    private final UserRepository repo;
-    private final PasswordEncoder encoder;
+    @Bean
+    public CommandLineRunner init(UserRepository repo,
+                                  PasswordEncoder encoder) {
 
-    public AdminSeeder(UserRepository repo, PasswordEncoder encoder) {
-        this.repo = repo;
-        this.encoder = encoder;
-    }
+        return args -> {
 
-    @Override
-    public void run(String... args) throws Exception {
+            User existing = repo.findByEmail("xxxxxxxxxxxxx@gmail.com");
 
-        User admin = new User();
-        admin.setName("Admin");
-        admin.setEmail("xxxxxxxxxxxxx@gmail.com");
-        admin.setPassword(encoder.encode("xxxxxxxxxxxx"));
-        admin.setRole("ROLE_ADMIN");
+            if (existing == null) {
 
-        repo.save(admin);
+                User admin = new User();
+                admin.setName("Admin");
+                admin.setEmail("xxxxxxxxxxxxx@gmail.com");
+                admin.setPassword(encoder.encode("xxxxxxxxxxxx"));
+                admin.setRole("ROLE_ADMIN");
 
-        System.out.println("Admin inserted");
+                repo.save(admin);
+
+                System.out.println("Admin inserted");
+            } else {
+                System.out.println("Admin already exists");
+            }
+        };
     }
 }
