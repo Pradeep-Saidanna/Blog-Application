@@ -7,14 +7,18 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.util.Scanner;
+
 @Configuration
 public class AdminSeeder {
 
     @Bean
     public CommandLineRunner init(UserRepository repo,
                                   PasswordEncoder encoder) {
+        Scanner sc = new Scanner(System.in);
 
         return args -> {
+
 
             User existing = repo.findByEmail("xxxxxxxxxxxxx@gmail.com");
 

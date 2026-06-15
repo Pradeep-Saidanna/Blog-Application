@@ -6,45 +6,42 @@
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-    <h1>Create New Post</h1>
-    <form th:action="@{/posts/save}" th:object="${post}" method="post">
-        <label>Title</label>
-        <br>
-        <input type="text" th:field="*{title}">
-        <div th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></div>
-        <br>
-        <br>
-        <label>Author</label>
-        <br>
-        <input type="text" th:field="*{author}">
-        <div th:if="${#fields.hasErrors('author')}" th:errors="*{author}"></div>
-        <br>
-        <br>
-        <label>Content</label>
-        <br>
-        <textarea th:field="*{content}"></textarea>
-        <div th:if="${#fields.hasErrors('content')}" th:errors="*{content}"></div>
-        <br>
-        <br>
-        <label>Excerpt</label>
-        <br>
-        <input type="text" th:field="*{excerpt}">
-        <div th:if="${#fields.hasErrors('excerpt')}" th:errors="*{excerpt}"></div>
-        <br>
-        <br>
-        <label>Tags (comma seperated)</label>
-        <br>
-        <input type="text" name="tagInput" placeholder="java, spring, hibernate">
-        <br>
-        <br>
-        <label>Published</label>
-        <br>
-        <input type="checkbox" th:field="*{published}">
-        <br>
-        <br>
-        <button type="submit">
-            Save Post
-        </button>
-    </form>
+
+<h1>Create New Post</h1>
+
+<div class="page-center">
+    <div class="card">
+
+        <form th:action="@{/posts/save}" th:object="${post}" method="post">
+
+            <label>Title</label>
+            <input type="text" th:field="*{title}">
+            <div th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="error"></div>
+
+            <label>Author</label>
+            <input type="text" th:field="*{author}">
+            <div th:if="${#fields.hasErrors('author')}" th:errors="*{author}" class="error"></div>
+
+            <label>Content</label>
+            <textarea th:field="*{content}"></textarea>
+            <div th:if="${#fields.hasErrors('content')}" th:errors="*{content}" class="error"></div>
+
+            <label>Excerpt</label>
+            <input type="text" th:field="*{excerpt}">
+            <div th:if="${#fields.hasErrors('excerpt')}" th:errors="*{excerpt}" class="error"></div>
+
+            <label>Tags (comma separated)</label>
+            <input type="text" name="tagInput" placeholder="java, spring, hibernate">
+
+            <label>Published</label>
+            <input type="checkbox" th:field="*{published}">
+
+            <button type="submit">Save Post</button>
+
+        </form>
+
+    </div>
+</div>
+
 </body>
 </html>

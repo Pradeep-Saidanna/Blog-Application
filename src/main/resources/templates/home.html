@@ -6,7 +6,16 @@
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-    <h1 th:text="${title}"></h1>
-    <p>Author : <span th:text="${author}"></span></p>
+
+<h1 th:text="${title}"></h1>
+
+<div class="page-center">
+    <div class="card">
+
+        <p><strong>Author:</strong> <span th:text="${author}"></span></p>
+
+    </div>
+</div>
+
 </body>
 </html>

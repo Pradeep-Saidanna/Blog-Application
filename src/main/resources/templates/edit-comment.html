@@ -6,39 +6,31 @@
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-    <h1>Edit Comment</h1>
-    <form th:action="@{/comments/update}"
-        method="post">
 
-        <input type="hidden"
-               name="id"
-               th:field="*{comment.id}"/>
+<h1>Edit Comment</h1>
 
-        <label>Name</label>
-        <br>
-        <input type="text"
-               name="name"
-               th:field="*{comment.name}"/>
-        <br>
-        <br>
+<div class="page-center">
+    <div class="card">
 
-        <label>Email</label>
-        <br>
-        <input type="email"
-               name="email"
-            th:field="*{comment.email}"/>
-        <br>
-        <br>
+        <form th:action="@{/comments/update}" method="post">
 
-        <label>Comment</label>
-        <br>
-        <textarea name="comment" th:field="*{comment.comment}"></textarea>
-        <br>
-        <br>
+            <input type="hidden" name="id" th:field="*{comment.id}"/>
 
-        <button type="submit">
-            Update Comment
-        </button>
-    </form>
+            <label>Name</label>
+            <input type="text" th:field="*{comment.name}"/>
+
+            <label>Email</label>
+            <input type="email" th:field="*{comment.email}"/>
+
+            <label>Comment</label>
+            <textarea th:field="*{comment.comment}"></textarea>
+
+            <button type="submit">Update Comment</button>
+
+        </form>
+
+    </div>
+</div>
+
 </body>
 </html>

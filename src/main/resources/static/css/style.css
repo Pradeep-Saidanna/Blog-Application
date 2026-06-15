@@ -14,10 +14,29 @@ h1 {
     margin: 0;
 }
 
+.page-center {
+    min-height: calc(100vh - 80px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
 .container {
-    width: 90%;
+    width: 100%;
+    max-width: 900px;
     margin: auto;
     padding: 20px;
+}
+
+.card {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 600px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    text-align: center;
 }
 
 a {
@@ -38,9 +57,8 @@ input,
 textarea,
 select {
     padding: 10px;
-    margin: 5px 0;
+    margin: 8px 0;
     width: 100%;
-    max-width: 400px;
     border: 1px solid #ccc;
     border-radius: 6px;
     outline: none;
@@ -51,7 +69,6 @@ textarea {
     resize: vertical;
 }
 
-/* BUTTONS */
 button {
     padding: 10px 15px;
     background: #3498db;
@@ -59,28 +76,35 @@ button {
     border: none;
     border-radius: 6px;
     cursor: pointer;
+    width: 100%;
 }
 
 button:hover {
     background: #1d6fa5;
 }
 
-.posts-grid {
+
+.posts-wrapper {
     display: flex;
-    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+}
+
+.posts-column {
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
     gap: 20px;
-    justify-content: space-between;
 }
 
 .post-card {
     background: white;
-    width: calc(50% - 10px);
-    box-sizing: border-box;
-    padding: 15px;
-    border-radius: 10px;
+    padding: 20px;
+    border-radius: 12px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    min-height: 260px;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    text-align: left;
 }
 
 .post-card:hover {
@@ -92,7 +116,6 @@ button:hover {
     margin-top: 0;
 }
 
-/* PAGINATION */
 .pagination {
     text-align: center;
     margin-top: 25px;
@@ -109,18 +132,6 @@ button:hover {
 .pagination a:hover {
     background: #3498db;
     color: white;
-}
-
-/* AUTH LINKS */
-.auth-links {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-/* ERROR TEXT */
-.error {
-    color: red;
-    font-size: 14px;
 }
 
 .auth-container {
@@ -140,33 +151,190 @@ button:hover {
     text-align: center;
 }
 
-.auth-card h2 {
-    margin-bottom: 20px;
-}
-
-.auth-card input {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-}
-
-.auth-card button {
-    width: 100%;
+.error {
+    color: red;
+    font-size: 14px;
 }
 
 @media (max-width: 768px) {
-
     .container {
         width: 95%;
     }
 
-    .post-card {
+    .posts-column {
         width: 100%;
     }
-
-    input,
-    textarea,
-    select {
-        max-width: 100%;
-    }
 }
+
+/*body {*/
+/*    font-family: Arial, sans-serif;*/
+/*    margin: 0;*/
+/*    padding: 0;*/
+/*    background: #f4f6f9;*/
+/*    color: #333;*/
+/*}*/
+
+/*h1 {*/
+/*    text-align: center;*/
+/*    padding: 20px;*/
+/*    background: #2c3e50;*/
+/*    color: white;*/
+/*    margin: 0;*/
+/*}*/
+
+/*.container {*/
+/*    width: 90%;*/
+/*    margin: auto;*/
+/*    padding: 20px;*/
+/*}*/
+
+/*a {*/
+/*    text-decoration: none;*/
+/*    color: #3498db;*/
+/*    font-weight: 500;*/
+/*}*/
+
+/*a:hover {*/
+/*    color: #1d6fa5;*/
+/*}*/
+
+/*form {*/
+/*    margin-bottom: 15px;*/
+/*}*/
+
+/*input,*/
+/*textarea,*/
+/*select {*/
+/*    padding: 10px;*/
+/*    margin: 5px 0;*/
+/*    width: 100%;*/
+/*    max-width: 400px;*/
+/*    border: 1px solid #ccc;*/
+/*    border-radius: 6px;*/
+/*    outline: none;*/
+/*}*/
+
+/*textarea {*/
+/*    min-height: 120px;*/
+/*    resize: vertical;*/
+/*}*/
+
+/*!* BUTTONS *!*/
+/*button {*/
+/*    padding: 10px 15px;*/
+/*    background: #3498db;*/
+/*    color: white;*/
+/*    border: none;*/
+/*    border-radius: 6px;*/
+/*    cursor: pointer;*/
+/*}*/
+
+/*button:hover {*/
+/*    background: #1d6fa5;*/
+/*}*/
+
+/*.posts-grid {*/
+/*    display: flex;*/
+/*    flex-wrap: wrap;*/
+/*    gap: 20px;*/
+/*    justify-content: space-between;*/
+/*}*/
+
+/*.post-card {*/
+/*    background: white;*/
+/*    width: calc(50% - 10px);*/
+/*    box-sizing: border-box;*/
+/*    padding: 15px;*/
+/*    border-radius: 10px;*/
+/*    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);*/
+/*    min-height: 260px;*/
+/*    transition: transform 0.2s ease, box-shadow 0.2s ease;*/
+/*}*/
+
+/*.post-card:hover {*/
+/*    transform: translateY(-5px);*/
+/*    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);*/
+/*}*/
+
+/*.post-card h2 {*/
+/*    margin-top: 0;*/
+/*}*/
+
+/*!* PAGINATION *!*/
+/*.pagination {*/
+/*    text-align: center;*/
+/*    margin-top: 25px;*/
+/*}*/
+
+/*.pagination a {*/
+/*    padding: 8px 12px;*/
+/*    background: white;*/
+/*    border: 1px solid #ccc;*/
+/*    margin: 0 5px;*/
+/*    border-radius: 6px;*/
+/*}*/
+
+/*.pagination a:hover {*/
+/*    background: #3498db;*/
+/*    color: white;*/
+/*}*/
+
+/*!* AUTH LINKS *!*/
+/*.auth-links {*/
+/*    text-align: center;*/
+/*    margin-bottom: 20px;*/
+/*}*/
+
+/*!* ERROR TEXT *!*/
+/*.error {*/
+/*    color: red;*/
+/*    font-size: 14px;*/
+/*}*/
+
+/*.auth-container {*/
+/*    height: 100vh;*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    background: linear-gradient(135deg, #74ebd5, #9face6);*/
+/*}*/
+
+/*.auth-card {*/
+/*    background: white;*/
+/*    padding: 40px;*/
+/*    border-radius: 12px;*/
+/*    width: 340px;*/
+/*    box-shadow: 0 10px 25px rgba(0,0,0,0.2);*/
+/*    text-align: center;*/
+/*}*/
+
+/*.auth-card h2 {*/
+/*    margin-bottom: 20px;*/
+/*}*/
+
+/*.auth-card input {*/
+/*    width: 100%;*/
+/*    padding: 10px;*/
+/*    margin: 10px 0;*/
+/*}*/
+
+/*.auth-card button {*/
+/*    width: 100%;*/
+/*}*/
+
+/*@media (max-width: 768px) {*/
+
+/*    .container {*/
+/*        width: 95%;*/
+/*    }*/
+
+/*    .post-card {*/
+/*        width: 100%;*/
+/*    }*/
+
+/*    input,*/
+/*    textarea,*/
+/*    select {*/
+/*        max-width: 100%;*/
+/*    }*/
+/*}*/
