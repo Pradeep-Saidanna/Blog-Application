@@ -6,7 +6,6 @@ body {
     color: #333;
 }
 
-
 h1 {
     text-align: center;
     padding: 20px;
@@ -15,13 +14,11 @@ h1 {
     margin: 0;
 }
 
-
 .container {
     width: 90%;
     margin: auto;
     padding: 20px;
 }
-
 
 a {
     text-decoration: none;
@@ -33,7 +30,6 @@ a:hover {
     color: #1d6fa5;
 }
 
-
 form {
     margin-bottom: 15px;
 }
@@ -41,12 +37,13 @@ form {
 input,
 textarea,
 select {
-    padding: 8px;
+    padding: 10px;
     margin: 5px 0;
     width: 100%;
     max-width: 400px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 6px;
+    outline: none;
 }
 
 textarea {
@@ -54,13 +51,13 @@ textarea {
     resize: vertical;
 }
 
-
+/* BUTTONS */
 button {
-    padding: 8px 15px;
+    padding: 10px 15px;
     background: #3498db;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 6px;
     cursor: pointer;
 }
 
@@ -68,40 +65,34 @@ button:hover {
     background: #1d6fa5;
 }
 
-
 .posts-grid {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
+    justify-content: space-between;
 }
-
 
 .post-card {
     background: white;
     width: calc(50% - 10px);
-
     box-sizing: border-box;
-
     padding: 15px;
-
-    border-radius: 8px;
-
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-
-    min-height: 250px;
-
-    transition: transform 0.2s ease;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    min-height: 260px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .post-card:hover {
-    transform: translateY(-3px);
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
 }
 
 .post-card h2 {
     margin-top: 0;
 }
 
-
+/* PAGINATION */
 .pagination {
     text-align: center;
     margin-top: 25px;
@@ -112,7 +103,7 @@ button:hover {
     background: white;
     border: 1px solid #ccc;
     margin: 0 5px;
-    border-radius: 5px;
+    border-radius: 6px;
 }
 
 .pagination a:hover {
@@ -120,25 +111,47 @@ button:hover {
     color: white;
 }
 
+/* AUTH LINKS */
 .auth-links {
     text-align: center;
     margin-bottom: 20px;
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-table th,
-table td {
-    border: 1px solid #ddd;
-    padding: 10px;
-}
-
+/* ERROR TEXT */
 .error {
     color: red;
     font-size: 14px;
+}
+
+.auth-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #74ebd5, #9face6);
+}
+
+.auth-card {
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    width: 340px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+.auth-card h2 {
+    margin-bottom: 20px;
+}
+
+.auth-card input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.auth-card button {
+    width: 100%;
 }
 
 @media (max-width: 768px) {

@@ -28,33 +28,25 @@ public class SecurityConfig {
 
     @Bean
     public AuthenticationManager authenticationManager(
-            AuthenticationConfiguration configuration)
-            throws Exception {
-
+            AuthenticationConfiguration configuration) throws Exception {
         return configuration.getAuthenticationManager();
     }
 
     @Bean
-    public SecurityFilterChain securityFilterChain(
-            HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http)
+            throws Exception {
 
         http
-
                 .authorizeHttpRequests(auth -> auth
 
+                        // PUBLIC PAGES (NO LOGIN REQUIRED)
                         .requestMatchers(
-                                "/register",
                                 "/login",
+                                "/register",
                                 "/css/**",
-                                "/posts",
-                                "/posts/*"
-                        ).permitAll()
-
-                        .requestMatchers(
-                                "/api/posts",
-                                "/api/posts/*",
-                                "/api/posts/search",
-                                "/api/comments/*"
+                                "/posts/**",
+                                "/api/posts/**",
+                                "/api/comments/**"
                         ).permitAll()
 
                         .requestMatchers(
@@ -62,13 +54,7 @@ public class SecurityConfig {
                                 "/posts/save",
                                 "/posts/edit/**",
                                 "/posts/update",
-                                "/posts/delete/**",
-                                "/comments/**"
-                        ).authenticated()
-
-                        .requestMatchers(
-                                "/api/posts/**",
-                                "/api/comments/**"
+                                "/posts/delete/**"
                         ).authenticated()
 
                         .anyRequest().authenticated()
@@ -81,7 +67,7 @@ public class SecurityConfig {
                 )
 
                 .logout(logout -> logout
-                        .logoutSuccessUrl("/login?logout")
+                        .logoutSuccessUrl("/posts")
                         .permitAll()
                 );
 
