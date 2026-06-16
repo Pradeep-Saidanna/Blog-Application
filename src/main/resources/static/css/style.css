@@ -2,46 +2,41 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background: #f4f6f9;
-    color: #333;
+    background: #ffffff;
+    color: #000;
 }
 
 h1 {
     text-align: center;
-    padding: 20px;
-    background: #2c3e50;
-    color: white;
+    padding: 20px 0;
     margin: 0;
+    border-bottom: 1px solid #ddd;
+    font-size: 32px;
+    font-weight: bold;
 }
 
 .container {
-    width: 90%;
-    max-width: 1100px;
+    width: 95%;
+    max-width: 1200px;
     margin: auto;
-    padding: 20px;
+    padding: 20px 0;
 }
 
-.content-wrapper {
+.content-wrapper,
+.editor-form,
+.post-details {
+    width: 95%;
     max-width: 900px;
     margin: 30px auto;
-    background: white;
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 a {
-    text-decoration: none;
-    color: #3498db;
-    font-weight: 500;
+    color: #000;
+    text-decoration: underline;
 }
 
 a:hover {
-    color: #1d6fa5;
-}
-
-form {
-    margin-bottom: 15px;
+    opacity: 0.8;
 }
 
 label {
@@ -56,28 +51,35 @@ textarea,
 select {
     width: 100%;
     padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
+    border: 1px solid #999;
     box-sizing: border-box;
-    outline: none;
+    font-size: 15px;
+    background: #fff;
 }
 
 textarea {
-    min-height: 140px;
+    min-height: 160px;
     resize: vertical;
 }
 
 button {
-    padding: 10px 16px;
-    background: #3498db;
-    color: white;
-    border: none;
-    border-radius: 6px;
+    padding: 10px 20px;
+    border: 1px solid #000;
+    background: #fff;
+    color: #000;
     cursor: pointer;
+    margin-top: 15px;
+    font-size: 15px;
 }
 
 button:hover {
-    background: #1d6fa5;
+    background: #f5f5f5;
+}
+
+.error {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
 }
 
 .posts-wrapper {
@@ -87,70 +89,25 @@ button:hover {
 .posts-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+    gap: 15px;
 }
 
 .post-card {
-    background: white;
-    padding: 18px;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    transition: 0.2s;
-    height: 100%;
-}
-
-.post-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    border: 1px solid #ccc;
+    padding: 15px;
+    background: #fff;
+    overflow-wrap: break-word;
 }
 
 .post-card h2 {
     margin-top: 0;
-}
-
-.post-details {
-    max-width: 900px;
-    margin: 30px auto;
-    background: white;
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin-bottom: 12px;
+    font-size: 20px;
 }
 
 .post-content {
-    margin-top: 20px;
     line-height: 1.8;
-}
-
-.editor-form {
-    max-width: 900px;
-    margin: 30px auto;
-    background: white;
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-
-.editor-form button {
     margin-top: 20px;
-}
-
-.pagination {
-    text-align: center;
-    margin-top: 25px;
-}
-
-.pagination a {
-    padding: 8px 12px;
-    background: white;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    margin: 0 5px;
-}
-
-.pagination a:hover {
-    background: #3498db;
-    color: white;
 }
 
 .auth-links {
@@ -158,54 +115,71 @@ button:hover {
     margin-bottom: 20px;
 }
 
-.error {
-    color: red;
-    font-size: 14px;
-    margin-top: 4px;
-}
-
 .auth-container {
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(135deg, #74ebd5, #9face6);
     padding: 20px;
-    box-sizing: border-box;
 }
 
 .auth-card {
-    background: white;
+    width: 100%;
+    max-width: 550px;
+    border: 1px solid #ccc;
     padding: 35px;
-    border-radius: 12px;
-    width: 340px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    box-sizing: border-box;
+    background: #fff;
+}
+
+.auth-card h2 {
     text-align: center;
+    margin-top: 0;
+    margin-bottom: 25px;
 }
 
 .auth-card input {
-    margin-bottom: 12px;
+    margin-bottom: 15px;
 }
 
 .auth-card button {
     width: 100%;
 }
 
-@media (max-width: 900px) {
+.pagination {
+    text-align: center;
+    margin-top: 30px;
+}
 
-    .posts-grid {
+.pagination a {
+    margin: 0 8px;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #ddd;
+    margin: 20px 0;
+}
+
+form[method="get"] {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr auto;
+    gap: 10px;
+    align-items: center;
+}
+
+form[method="get"] button {
+    margin-top: 0;
+}
+
+@media (max-width: 992px) {
+
+    form[method="get"] {
         grid-template-columns: 1fr;
     }
 
-    .container {
-        width: 95%;
-    }
-
-    .content-wrapper,
-    .editor-form,
-    .post-details {
-        margin: 20px auto;
-        padding: 20px;
+    .auth-card {
+        max-width: 600px;
     }
 }
 
@@ -213,205 +187,41 @@ button:hover {
 
     h1 {
         font-size: 24px;
-        padding: 15px;
+        padding: 15px 0;
     }
 
-    .container {
+    .container,
+    .content-wrapper,
+    .editor-form,
+    .post-details {
         width: 95%;
-        padding: 15px;
     }
 
     .auth-container {
-        min-height: auto;
-        padding: 40px 15px;
+        align-items: flex-start;
+        padding-top: 40px;
     }
 
     .auth-card {
-        width: 100%;
-        max-width: 350px;
-        padding: 25px;
+        max-width: 100%;
+        padding: 20px;
     }
 
-    input,
-    textarea,
-    select {
-        font-size: 14px;
+    .post-card {
+        padding: 10px;
+    }
+
+    .post-card h2 {
+        font-size: 16px;
     }
 
     button {
         width: 100%;
     }
+
+    input,
+    textarea,
+    select {
+        font-size: 16px;
+    }
 }
-
-/*body {*/
-/*    font-family: Arial, sans-serif;*/
-/*    margin: 0;*/
-/*    padding: 0;*/
-/*    background: #f4f6f9;*/
-/*    color: #333;*/
-/*}*/
-
-/*h1 {*/
-/*    text-align: center;*/
-/*    padding: 20px;*/
-/*    background: #2c3e50;*/
-/*    color: white;*/
-/*    margin: 0;*/
-/*}*/
-
-/*.container {*/
-/*    width: 90%;*/
-/*    margin: auto;*/
-/*    padding: 20px;*/
-/*}*/
-
-/*a {*/
-/*    text-decoration: none;*/
-/*    color: #3498db;*/
-/*    font-weight: 500;*/
-/*}*/
-
-/*a:hover {*/
-/*    color: #1d6fa5;*/
-/*}*/
-
-/*form {*/
-/*    margin-bottom: 15px;*/
-/*}*/
-
-/*input,*/
-/*textarea,*/
-/*select {*/
-/*    padding: 10px;*/
-/*    margin: 5px 0;*/
-/*    width: 100%;*/
-/*    max-width: 400px;*/
-/*    border: 1px solid #ccc;*/
-/*    border-radius: 6px;*/
-/*    outline: none;*/
-/*}*/
-
-/*textarea {*/
-/*    min-height: 120px;*/
-/*    resize: vertical;*/
-/*}*/
-
-/*!* BUTTONS *!*/
-/*button {*/
-/*    padding: 10px 15px;*/
-/*    background: #3498db;*/
-/*    color: white;*/
-/*    border: none;*/
-/*    border-radius: 6px;*/
-/*    cursor: pointer;*/
-/*}*/
-
-/*button:hover {*/
-/*    background: #1d6fa5;*/
-/*}*/
-
-/*.posts-grid {*/
-/*    display: flex;*/
-/*    flex-wrap: wrap;*/
-/*    gap: 20px;*/
-/*    justify-content: space-between;*/
-/*}*/
-
-/*.post-card {*/
-/*    background: white;*/
-/*    width: calc(50% - 10px);*/
-/*    box-sizing: border-box;*/
-/*    padding: 15px;*/
-/*    border-radius: 10px;*/
-/*    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);*/
-/*    min-height: 260px;*/
-/*    transition: transform 0.2s ease, box-shadow 0.2s ease;*/
-/*}*/
-
-/*.post-card:hover {*/
-/*    transform: translateY(-5px);*/
-/*    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);*/
-/*}*/
-
-/*.post-card h2 {*/
-/*    margin-top: 0;*/
-/*}*/
-
-/*!* PAGINATION *!*/
-/*.pagination {*/
-/*    text-align: center;*/
-/*    margin-top: 25px;*/
-/*}*/
-
-/*.pagination a {*/
-/*    padding: 8px 12px;*/
-/*    background: white;*/
-/*    border: 1px solid #ccc;*/
-/*    margin: 0 5px;*/
-/*    border-radius: 6px;*/
-/*}*/
-
-/*.pagination a:hover {*/
-/*    background: #3498db;*/
-/*    color: white;*/
-/*}*/
-
-/*!* AUTH LINKS *!*/
-/*.auth-links {*/
-/*    text-align: center;*/
-/*    margin-bottom: 20px;*/
-/*}*/
-
-/*!* ERROR TEXT *!*/
-/*.error {*/
-/*    color: red;*/
-/*    font-size: 14px;*/
-/*}*/
-
-/*.auth-container {*/
-/*    height: 100vh;*/
-/*    display: flex;*/
-/*    justify-content: center;*/
-/*    align-items: center;*/
-/*    background: linear-gradient(135deg, #74ebd5, #9face6);*/
-/*}*/
-
-/*.auth-card {*/
-/*    background: white;*/
-/*    padding: 40px;*/
-/*    border-radius: 12px;*/
-/*    width: 340px;*/
-/*    box-shadow: 0 10px 25px rgba(0,0,0,0.2);*/
-/*    text-align: center;*/
-/*}*/
-
-/*.auth-card h2 {*/
-/*    margin-bottom: 20px;*/
-/*}*/
-
-/*.auth-card input {*/
-/*    width: 100%;*/
-/*    padding: 10px;*/
-/*    margin: 10px 0;*/
-/*}*/
-
-/*.auth-card button {*/
-/*    width: 100%;*/
-/*}*/
-
-/*@media (max-width: 768px) {*/
-
-/*    .container {*/
-/*        width: 95%;*/
-/*    }*/
-
-/*    .post-card {*/
-/*        width: 100%;*/
-/*    }*/
-
-/*    input,*/
-/*    textarea,*/
-/*    select {*/
-/*        max-width: 100%;*/
-/*    }*/
-/*}*/
